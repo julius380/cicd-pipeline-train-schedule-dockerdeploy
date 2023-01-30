@@ -14,7 +14,7 @@ pipeline {
           }
           steps{
             script{
-              app = docker.build("c3y2i9q7/jenkins")
+              app = docker.build("julius380/train-schedule")
               }
             }
         }
@@ -33,7 +33,7 @@ pipeline {
           }
           steps{
             script{
-            docker.withRegistry('https://459689308206.dkr.ecr.eu-west-1.amazonaws.com/jenkins','docker-credentials'){
+            docker.withRegistry('https://registry.hub.docker.com','docker-credentials'){
               app.push("${env.BUILD_NUMBER}")
               app.push("latest")
             }
