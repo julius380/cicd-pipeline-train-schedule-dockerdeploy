@@ -32,10 +32,11 @@ pipeline {
             branch 'master'
           }
           steps{
-            script{
-            docker.withRegistry('https://registry.hub.docker.com','docker-credentials'){
-              app.push("${env.BUILD_NUMBER}")
-              app.push("latest")
+              withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: '$USERNAME', passwordVariable: '$PASSWORD')]){
+            script{               
+            sh 'aws ecr get-login-password --region eu-west-1 | login --username "$USERNAME" --password-stdin 459689308206.dkr.ecr.eu-west-1.amazonaws.com
+            sh 'docker push 459689308206.dkr.ecr.eu-west-1.amazonaws.com/jenkins:latest'
+            }
             }
           }}
         }
