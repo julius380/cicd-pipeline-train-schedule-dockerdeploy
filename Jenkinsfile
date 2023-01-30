@@ -20,10 +20,12 @@ pipeline {
         }
 
         stage('Test Image'){
+          steps{
+            script{
           app.inside {
             sh 'echo $(curl localhost:8080)'
-          }
-        }
+          }}
+        }}
 
         stage('Push Image to Repo'){
           when {
