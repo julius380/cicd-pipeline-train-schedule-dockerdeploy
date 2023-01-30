@@ -33,7 +33,8 @@ pipeline {
           }
           steps{
               withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: '$USERNAME', passwordVariable: '$PASSWORD')]){
-            script{               
+            script{    
+            sh 'sudo yum install -y awscli'
             sh 'aws ecr get-login-password --region eu-west-1 | login --username "$USERNAME" --password-stdin 459689308206.dkr.ecr.eu-west-1.amazonaws.com'
             sh 'docker push 459689308206.dkr.ecr.eu-west-1.amazonaws.com/jenkins:latest'
             }
