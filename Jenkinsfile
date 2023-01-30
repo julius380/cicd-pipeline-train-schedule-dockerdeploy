@@ -14,7 +14,7 @@ pipeline {
           }
           steps{
             script{
-              app = docker.build("julius380/train-schedule")
+              app = docker.build("c3y2i9q7/jenkins")
               }
             }
         }
@@ -55,7 +55,7 @@ pipeline {
                 } catch (err) {
                   echo : 'caught error: $err'
                 }
-                sh 'sshpass -p '$PASSWORD' -v ssh -o StrictHostKeyChecking=no $USERNAME@prod-ip \"docker run -p 8080:8080 --name train-schedule --restart always -d julius380/train-schedule:${env.BUILD_NUMBER}\"'
+                sh 'sshpass -p '$PASSWORD' -v ssh -o StrictHostKeyChecking=no $USERNAME@prod-ip \"docker run -p 8080:8080 --name train-schedule --restart always -d c3y2i9q7/jenkins:${env.BUILD_NUMBER}\"'
               }
             }
 
