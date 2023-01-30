@@ -33,7 +33,7 @@ pipeline {
           }
           steps{
             script{
-            docker.withRegistry('https://459689308206.dkr.ecr.eu-west-1.amazonaws.com/c3y2i9q7/jenkins','docker-credentials'){
+            docker.withRegistry('https://459689308206.dkr.ecr.eu-west-1.amazonaws.com/jenkins','ecr:jenkins:'docker-credentials''){
               app.push("${env.BUILD_NUMBER}")
               app.push("latest")
             }
